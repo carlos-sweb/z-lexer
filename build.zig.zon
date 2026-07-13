@@ -1,0 +1,16 @@
+.{
+    .name = .zlexer,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.16.0",
+    .fingerprint = 0xb722a463f78e6530,
+    .description = "ECMAScript tokenizer (ECMA-262 section 12) in Zig",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src/",
+        "README.md",
+    },
+    .dependencies = .{
+        .zregexp = .{ .path = "../zregexp" },
+    },
+}
