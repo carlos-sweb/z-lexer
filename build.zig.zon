@@ -11,6 +11,6 @@
         "README.md",
     },
     .dependencies = .{
-        .zregexp = .{ .path = "../zregexp" },
+        .zregex = .{ .path = "../z-regex" },
     },
 }

@@ -7,7 +7,7 @@ ECMAScript tokenizer (ECMA-262 §12, the Lexical Grammar) in Zig 0.16 — the fi
 
 ## Why this is its own repo, independent of everything else
 
-The lexer doesn't produce runtime values — it produces `Token`s, a purely syntactic concept. It has no dependency on [z-value](https://github.com/carlos-sweb/z-value)'s `JSValue`, same independence [z-number](https://github.com/carlos-sweb/z-number) has from the rest of the ecosystem. Its one real dependency is [zregexp](https://github.com/carlos-sweb/zregexp), reused for Unicode `General_Category` lookup (`ID_Start`/`ID_Continue` classification) rather than duplicating ~21k lines of UCD-derived tables in a second repo.
+The lexer doesn't produce runtime values — it produces `Token`s, a purely syntactic concept. It has no dependency on [z-value](https://github.com/carlos-sweb/z-value)'s `JSValue`, same independence [z-number](https://github.com/carlos-sweb/z-number) has from the rest of the ecosystem. Its one real dependency is [zregex](https://github.com/carlos-sweb/z-regex), reused for Unicode `General_Category` lookup (`ID_Start`/`ID_Continue` classification) rather than duplicating ~21k lines of UCD-derived tables in a second repo.
 
 ## Design
 

@@ -4,13 +4,13 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const zregexp_dep = b.dependency("zregexp", .{ .target = target, .optimize = optimize });
-    const zregexp_module = zregexp_dep.module("zregexp");
+    const zregex_dep = b.dependency("zregex", .{ .target = target, .optimize = optimize });
+    const zregex_module = zregex_dep.module("zregex");
 
     const zlexer_module = b.addModule("zlexer", .{
         .root_source_file = b.path("src/zlexer.zig"),
     });
-    zlexer_module.addImport("zregexp", zregexp_module);
+    zlexer_module.addImport("zregex", zregex_module);
 
     const test_step = b.step("test", "Run all tests");
 
@@ -34,7 +34,7 @@ pub fn build(b: *std.Build) void {
         });
 
         unit_tests.root_module.addImport("zlexer", zlexer_module);
-        unit_tests.root_module.addImport("zregexp", zregexp_module);
+        unit_tests.root_module.addImport("zregex", zregex_module);
 
         const run_unit_tests = b.addRunArtifact(unit_tests);
         test_step.dependOn(&run_unit_tests.step);
@@ -48,7 +48,7 @@ pub fn build(b: *std.Build) void {
             .optimize = optimize,
         }),
     });
-    src_tests.root_module.addImport("zregexp", zregexp_module);
+    src_tests.root_module.addImport("zregex", zregex_module);
     const run_src_tests = b.addRunArtifact(src_tests);
     test_step.dependOn(&run_src_tests.step);
 

@@ -1,6 +1,6 @@
 const std = @import("std");
 const Allocator = std.mem.Allocator;
-const zregexp = @import("zregexp");
+const zregex = @import("zregex");
 const token_mod = @import("token.zig");
 
 pub const Token = token_mod.Token;
@@ -38,7 +38,7 @@ fn isLineTerminatorByte(b: u8) bool {
 fn isWhiteSpaceCp(cp: u21) bool {
     return switch (cp) {
         0x09, 0x0B, 0x0C, 0x20, 0xA0, 0xFEFF => true,
-        else => cp >= 0x80 and zregexp.unicode.isInCategory(cp, .Zs),
+        else => cp >= 0x80 and zregex.unicode.isInCategory(cp, .Zs),
     };
 }
 
@@ -47,7 +47,7 @@ fn isIdStart(cp: u21) bool {
     if (cp == '$' or cp == '_') return true;
     if (cp < 0x80) return (cp >= 'a' and cp <= 'z') or (cp >= 'A' and cp <= 'Z');
     inline for (.{ .Lu, .Ll, .Lt, .Lm, .Lo, .Nl }) |cat| {
-        if (zregexp.unicode.isInCategory(cp, cat)) return true;
+        if (zregex.unicode.isInCategory(cp, cat)) return true;
     }
     return false;
 }
@@ -59,7 +59,7 @@ fn isIdContinue(cp: u21) bool {
     if (isIdStart(cp)) return true;
     if (cp < 0x80) return cp >= '0' and cp <= '9';
     inline for (.{ .Mn, .Mc, .Nd, .Pc }) |cat| {
-        if (zregexp.unicode.isInCategory(cp, cat)) return true;
+        if (zregex.unicode.isInCategory(cp, cat)) return true;
     }
     return false;
 }
